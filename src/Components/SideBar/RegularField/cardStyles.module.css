@@ -1,0 +1,9 @@
+.card__label {
+  background-color: #284235;
+  border-left: 4px solid #2d7d22;
+  padding: 12px 4px;
+  text-align: center;
+}
+.card__details {
+  padding: 0 8px;
+}

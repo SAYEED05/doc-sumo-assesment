@@ -1,0 +1,27 @@
+.container {
+  border: 1px solid var(--line_color);
+  height: 100%;
+}
+
+.header {
+  height: 5%;
+}
+.body {
+  height: 85%;
+  overflow-y: scroll;
+}
+.tab {
+  text-transform: none;
+}
+.tab__body {
+  margin-top: 16px;
+}
+
+.footer {
+  height: 10%;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line_color);
+}

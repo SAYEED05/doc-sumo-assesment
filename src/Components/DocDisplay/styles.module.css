@@ -1,0 +1,8 @@
+.container {
+  border: 1px solid var(--line_color);
+  height: 100%;
+}
+
+img {
+  height: 90vh;
+}
