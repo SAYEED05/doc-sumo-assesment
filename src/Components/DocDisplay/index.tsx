@@ -3,9 +3,12 @@ import styles from "./styles.module.css";
 import image from "../../sampleData/Pdfpages/a2cbec1124234a6d846f908ba9531a2e-1.jpg";
 import { useMemo } from "react";
 import HighlightRectangle from "./HighlightRectangle";
+import { useData } from "../../Provider/DataProvider";
 
-const DocDisplay = ({ dataToSubmit }: any) => {
-  const PositionMapper = useMemo(() => {
+const DocDisplay = () => {
+  const { dataToSubmit } = useData();
+
+  const positionMapper = useMemo(() => {
     const _modified = dataToSubmit.map((item: any) => {
       return {
         position: item?.content?.position,
@@ -14,7 +17,6 @@ const DocDisplay = ({ dataToSubmit }: any) => {
     });
     return _modified;
   }, [dataToSubmit]);
-  console.log(PositionMapper, "PositionMapper");
 
   return (
     <Grid
@@ -34,7 +36,7 @@ const DocDisplay = ({ dataToSubmit }: any) => {
         sx={{ backgroundColor: "#526069", position: "relative" }}
       >
         <img src={image} alt="document" />
-        {PositionMapper?.map((rectangle: any) => (
+        {positionMapper?.map((rectangle: any) => (
           <HighlightRectangle position={rectangle} />
         ))}
       </Grid>

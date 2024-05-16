@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 
 const HighlightRectangle = ({ position }: any) => {
   const [y, width, x, height] = position?.position ?? [];
-  console.log(position, "POS");
   const reducer = 0.3;
   if (!position?.position) return null;
   return (

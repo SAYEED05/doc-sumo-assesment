@@ -1,18 +1,13 @@
 import { List } from "@mui/material";
 import Card from "./Card";
+import { useData } from "../../../Provider/DataProvider";
 
-const RegularFields = ({ data, fieldsSelected, setFieldSelected }: any) => {
+const RegularFields = () => {
+  const { filteredData } = useData();
   return (
     <List sx={{ gap: 2 }}>
-      {data.map((item: any) => {
-        return (
-          <Card
-            key={item.id}
-            data={item}
-            fieldsSelected={fieldsSelected}
-            setFieldSelected={setFieldSelected}
-          />
-        );
+      {filteredData.map((item: any) => {
+        return <Card key={item.id} data={item} />;
       })}
     </List>
   );

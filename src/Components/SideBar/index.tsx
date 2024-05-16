@@ -4,15 +4,11 @@ import { useState } from "react";
 import { TabType } from "./types";
 import { tabs } from "./constants";
 import RegularFields from "./RegularField";
+import { useData } from "../../Provider/DataProvider";
 
-const SideBar = ({
-  filteredData,
-  fieldsSelected,
-  setFieldSelected,
-  hasAnySelected,
-  setModalOpen,
-  setAllSelected,
-}: any) => {
+const SideBar = () => {
+  const { hasAnySelected, setModalOpen, setAllSelected } = useData();
+
   const [tabSelected, setTabSelected] = useState<number>(0);
 
   const handleTabChange = (e: any, newValue: number): void => {
@@ -40,11 +36,7 @@ const SideBar = ({
             component={"div"}
             className={`${tabs[0].value} ${styles.tab__body}`}
           >
-            <RegularFields
-              data={filteredData}
-              fieldsSelected={fieldsSelected}
-              setFieldSelected={setFieldSelected}
-            />
+            <RegularFields />
           </Box>
         )}
         {tabSelected === 1 && (

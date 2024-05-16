@@ -3,14 +3,17 @@ import styles from "./cardStyles.module.css";
 import { getInitials } from "../../../utils";
 import { useCallback, useMemo } from "react";
 import FadeMenu from "../../Menu";
-const Card = ({ data, fieldsSelected, setFieldSelected }: any) => {
+import { useData } from "../../../Provider/DataProvider";
+const Card = ({ data }: any) => {
+  const { fieldsSelected, setFieldSelected } = useData();
+
   const isSelected = useMemo(
     () => !!fieldsSelected[`${data.id}`],
     [fieldsSelected, data]
   );
 
   const handleCheckboxChange = useCallback(
-    (e: any, id: string) => {
+    (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
       setFieldSelected((prev: any) => {
         return {
           ...prev,

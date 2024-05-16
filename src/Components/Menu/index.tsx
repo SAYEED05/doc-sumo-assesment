@@ -15,12 +15,11 @@ export default function FadeMenu({ setFieldSelected, data }: any) {
   };
 
   const handleRemove = React.useCallback(
-    (e: any, id: string) => {
+    (e: React.MouseEvent, id: string) => {
       e.stopPropagation();
       setFieldSelected((prev: any) => {
         const newState = { ...prev };
         delete newState[id];
-        console.log("id:", id, newState, "new state");
         return newState;
       });
       handleClose();

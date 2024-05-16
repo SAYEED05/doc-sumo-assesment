@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { useData } from "../../Provider/DataProvider";
 
 const style = {
   position: "absolute" as "absolute",
@@ -20,9 +21,12 @@ const style = {
 };
 
 //ideally this will be a reusable component
-const Modal = ({ open, handleClose, dataToSubmit }: any) => {
+const Modal = () => {
+  const { modelOpen: open, setModalOpen, dataToSubmit } = useData();
   //will comefrom api resonse
   const [success, setSuccess] = useState(false);
+
+  const handleClose = () => setModalOpen(false);
   return (
     <MuiModal
       open={open}
