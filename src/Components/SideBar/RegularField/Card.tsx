@@ -33,19 +33,19 @@ const Card = ({ data }: any) => {
         <Grid className={styles.card__label} item xs={2}>
           <Typography>{getInitials(`${data?.label}`)}</Typography>
         </Grid>
-        <Grid className={styles.card__details} item xs={7}>
-          <Typography>{data.label}</Typography>
-          <Typography>{data?.content?.value}</Typography>
+        <Grid className={styles.card__details} item xs={6}>
+          <Typography fontSize={14}>{data.label}</Typography>
+          <Typography fontSize={14}>{data?.content?.value}</Typography>
         </Grid>
         <Grid
           className={styles.card__actions}
           item
-          xs={3}
+          xs={4}
           container
           alignItems="center"
         >
           <Checkbox
-            size="large"
+            size="medium"
             checked={isSelected}
             onChange={(e) => handleCheckboxChange(e, data.id)}
           />
