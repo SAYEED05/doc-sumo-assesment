@@ -35,7 +35,7 @@ const DocDisplay = () => {
         alignItems={"center"}
         sx={{ backgroundColor: "#526069", position: "relative" }}
       >
-        <img src={image} alt="document" />
+        <img src={image} alt="document" loading="lazy" />
         {positionMapper?.map((rectangle: any) => (
           <HighlightRectangle position={rectangle} />
         ))}
