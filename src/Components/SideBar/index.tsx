@@ -1,58 +1,28 @@
-import { Box, Button, Grid, Tab, Tabs } from "@mui/material";
+import { Box, Button, Grid, Tab, Tabs, Typography } from "@mui/material";
 import styles from "./styles.module.css";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Props, TabType } from "./types";
+import { useState } from "react";
+import { TabType } from "./types";
 import { tabs } from "./constants";
 import RegularFields from "./RegularField";
-import Modal from "../Modal";
 
-const SideBar = ({ data }: Props) => {
+const SideBar = ({
+  filteredData,
+  fieldsSelected,
+  setFieldSelected,
+  hasAnySelected,
+  setModalOpen,
+  setAllSelected,
+}: any) => {
   const [tabSelected, setTabSelected] = useState<number>(0);
-  const [fieldsSelected, setFieldSelected] = useState<any>({}); //used map(object) instead of array because look up in map is O(1) while in array it is O(N)
-  const [modelOpen, setModalOpen] = useState(false);
-
-  const sectionsData = useMemo(() => {
-    return data?.sections?.[0]?.children ?? [];
-  }, [data]);
-  const setAllSelected = useCallback(() => {
-    for (let item of sectionsData) {
-      setFieldSelected((prev: any) => {
-        return {
-          ...prev,
-          [item.id]: true,
-        };
-      });
-    }
-  }, [sectionsData]);
-
-  const filteredData = useMemo(() => {
-    const _filtered = sectionsData.filter((item: any) =>
-      fieldsSelected.hasOwnProperty(item.id)
-    );
-
-    return _filtered;
-  }, [sectionsData, fieldsSelected]);
-
-  const dataToSubmit = useMemo(() => {
-    const _data = filteredData.filter((item: any) => !!fieldsSelected[item.id]);
-
-    return _data;
-  }, [filteredData, fieldsSelected]);
-
-  useEffect(() => {
-    setAllSelected();
-  }, [setAllSelected]);
-
-  const hasAnySelected = useMemo(() => {
-    return !Object.values(fieldsSelected).some((item) => item);
-  }, [fieldsSelected]);
 
   const handleTabChange = (e: any, newValue: number): void => {
     setTabSelected(newValue);
   };
   return (
     <Grid item xs={3} p={2} className={styles.container}>
-      <div className={styles.header}>Fields</div>
+      <div className={styles.header}>
+        <Typography>Fields</Typography>
+      </div>
       <div className={styles.body}>
         <Tabs value={tabSelected} onChange={handleTabChange}>
           {tabs.map((tab: TabType) => (
@@ -96,11 +66,6 @@ const SideBar = ({ data }: Props) => {
           Confirm
         </Button>
       </Box>
-      <Modal
-        open={modelOpen}
-        handleClose={() => setModalOpen(false)}
-        dataToSubmit={dataToSubmit}
-      />
     </Grid>
   );
 };
